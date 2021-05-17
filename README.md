@@ -2,11 +2,13 @@
 
 ## Install
 
-pygame library
+* pygame library
 
 ```pip install pygame```
 
 <br>
+
+---
 
 Enjoy my work! Thank you.
 
