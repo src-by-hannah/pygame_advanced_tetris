@@ -6,7 +6,7 @@
 """
 Created on Sun May 26 16:36:27 2019
 
-@author: Hannah_Noh, Soyoon_Lee, SoJeong_Lee, Seungwon_Jang
+@author: Hannah_Noh
 """
 
 import random, time, pygame, sys
@@ -23,7 +23,7 @@ BLANK = '.'
 itemKEY = False
 i_itemCount, o_itemCount, l_itemCount = 3, 3, 3
 roundCount = 1
-BGimage = 'BGimage_1.jpg'
+BGimage = './img/BGimage_1.jpg'
 
 MOVESIDEWAYSFREQ = 0.15
 MOVEDOWNFREQ = 0.1
@@ -198,22 +198,26 @@ def main():
     pygame.init()
     FPSCLOCK = pygame.time.Clock()
     DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
-    BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
-    BIGFONT = pygame.font.Font('freesansbold.ttf', 100)
+    BASICFONT = pygame.font.Font('./font/freesansbold.ttf', 18)
+    BIGFONT = pygame.font.Font('./font/freesansbold.ttf', 100)
     pygame.display.set_caption('ISH')
 
     showTextScreen('ISH')
     showRuleScreen()
     while True: # game loop
         if random.randint(0, 1) == 0:
-            pygame.mixer.music.load('tetrisb.mid')
+            pygame.mixer.music.load('./bgm/tetrisb.mid')
         else:
-            pygame.mixer.music.load('tetrisc.mid')
+            pygame.mixer.music.load('./bgm/tetrisc.mid')
         pygame.mixer.music.play(-1, 0.0)
         run = runGame()
         pygame.mixer.music.stop()
         if run == 1: # next Round
-            BGimage = random.choice(['BGimage_1.jpg', 'BGimage_2.jpg', 'BGimage_3.jpg', 'BGimage_4.jpg', 'BGimage_5.jpg'])
+            BGimage = random.choice(['./img/BGimage_1.jpg', 
+                                     './img/BGimage_2.jpg', 
+                                     './img/BGimage_3.jpg', 
+                                     './img/BGimage_4.jpg', 
+                                     './img/BGimage_5.jpg'])
             i_itemCount, o_itemCount, l_itemCount = 3, 3, 3 # reset Item
             roundCount += 1
         else : # can't fit a new piece on the board, so game over
@@ -468,9 +472,9 @@ def showTextScreen(text):
 def showRuleScreen():
     # This function displays the game Rule
     DISPLAYSURF.fill(BGCOLOR)
-    RuleBoldFONT = pygame.font.Font('NanumGothic.ttf', 60)
-    RuleFONT = pygame.font.Font('NanumGothic.ttf', 30)
-    itemFONT = pygame.font.Font('NanumGothic.ttf', 15)
+    RuleBoldFONT = pygame.font.Font('./font/NanumGothic.ttf', 60)
+    RuleFONT = pygame.font.Font('./font/NanumGothic.ttf', 30)
+    itemFONT = pygame.font.Font('./font/NanumGothic.ttf', 15)
     
     text1 = "게임 방법"
     text2 = "1. 보드에 나타나는 보라색 박스를 모두 지우면 next Round!"
@@ -496,7 +500,7 @@ def showRuleScreen():
 
     # Draw the piece image
     pieceImageRect = pygame.Rect(50, 210, 10, 10)
-    pieceImageSurf = pygame.image.load('piece.png')
+    pieceImageSurf = pygame.image.load('./img/piece.png')
     DISPLAYSURF.blit(pieceImageSurf, pieceImageRect)
 
     # Draw the additional "Press a key to play." text.
